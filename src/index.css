@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.edit {
+  margin-right: 4px;
+  color: green;
+}
+
+.delete{
+  color: red;
+}
+
+.border {
+  border: solid black 4px;
+}
