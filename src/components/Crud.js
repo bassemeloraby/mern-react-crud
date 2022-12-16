@@ -1,7 +1,7 @@
 
 function Crud() {
   return (
-    <div>Crud</div>
+    <div className="container">Crud</div>
   )
 }
 
