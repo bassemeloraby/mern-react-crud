@@ -9,7 +9,7 @@ function Crud() {
   return (
     <div className="container">
       <AddList setList={setList} />
-      <form >
+      <form onSubmit={handleSubmit}>
         <table className="table  mt-4 border">
           {lists.map((current) =>
             updateState === current.id ? (
@@ -21,11 +21,17 @@ function Crud() {
                 <td className="border">
                   <button
                     className="edit"
-                    onClick={() => handleSubmit(current.id)}
+                    onClick={() => handleEdit(current.id)}
                   >
                     Edit
                   </button>
-                  <button className="delete">Delete</button>
+                  <button
+                    className="delete"
+                    type="button"
+                    onClick={() => handleDelete(current.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             )
@@ -34,17 +40,31 @@ function Crud() {
       </form>
     </div>
   );
-  function handleSubmit(id) {
+  function handleEdit(id) {
     setUpdateState(id);
+  }
+  function handleDelete(id) {
+    const newList = lists.filter((li)=> li.id !== id)
+    setList(newList);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const name = event.target.elements.name.value;
+    const newlist = lists.map((li) =>
+      li.id === updateState ? { ...li, name: name } : li
+    );
+    setList(newlist);
+    setUpdateState(-1);
   }
 }
 //edit
 function EditList({ current, lists, setList }) {
-  function handInput() {
-    const name = current.target.name;
-    const value = name.value;
-   const newlist= lists.map((li) => (li.id === current.id ? { ...li, name: value } : li))
-   setList(newlist)
+  function handInput(event) {
+    const value = event.target.value;
+    const newlist = lists.map((li) =>
+      li.id === current.id ? { ...li, name: value } : li
+    );
+    setList(newlist);
   }
   return (
     <tr>
