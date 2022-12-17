@@ -3,19 +3,29 @@ import AddList from './AddList';
 import EditList from './EditList';
 
 function Crud() {
-  const [tasks, setList] = useState([
-    { id: 1, name: 'hp' },
-    { id: 2, name: 'lenovo' },
+  const [tasks, setTasks] = useState([
+    {
+      _id: 1,
+      text: 'bassem',
+    },
+    {
+      _id: 2,
+      text: 'omar',
+    },
+    {
+      _id: 3,
+      text: 'soliman',
+    },
   ]);
   const [updateState, setUpdateState] = useState(-1);
   return (
     <div className="container">
-      <AddList setList={setList} />
+      <AddList setTasks={setTasks} />
       <form onSubmit={handleSubmit}>
         <table className="table  mt-4 border">
           {tasks.map((current) =>
             updateState === current.id ? (
-              <EditList current={current} tasks={tasks} setList={setList} />
+              <EditList current={current} tasks={tasks} setTasks={setTasks} />
             ) : (
               <tr className="text-center border">
                 <td className="border">{current.id}</td>
@@ -46,8 +56,8 @@ function Crud() {
     setUpdateState(id);
   }
   function handleDelete(id) {
-    const newList = tasks.filter((li)=> li.id !== id)
-    setList(newList);
+    const newList = tasks.filter((li) => li.id !== id);
+    setTasks(newList);
   }
   function handleSubmit(event) {
     event.preventDefault();
@@ -55,7 +65,7 @@ function Crud() {
     const newlist = tasks.map((li) =>
       li.id === updateState ? { ...li, name: name } : li
     );
-    setList(newlist);
+    setTasks(newlist);
     setUpdateState(-1);
   }
 }

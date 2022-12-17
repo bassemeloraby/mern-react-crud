@@ -1,5 +1,5 @@
 import { useRef } from "react";
-function AddList({ setList }) {
+function AddList({ setTasks }) {
     const nameRef = useRef();
     function handleSubmit(event) {
       event.preventDefault();
@@ -9,7 +9,7 @@ function AddList({ setList }) {
         id: id,
         name,
       };
-      setList((prevList) => {
+      setTasks((prevList) => {
         return prevList.concat(newlist);
       });
       nameRef.current.value = '';
