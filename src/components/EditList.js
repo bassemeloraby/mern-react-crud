@@ -3,7 +3,7 @@ function EditList({ current, tasks, setTasks }) {
     function handInput(event) {
       const value = event.target.value;
       const newlist = tasks.map((li) =>
-        li._id === current._id ? { ...li, name: value } : li
+        li._id === current._id ? { ...li, text: value } : li
       );
       setTasks(newlist);
     }
@@ -13,9 +13,9 @@ function EditList({ current, tasks, setTasks }) {
         <td>
           <input
             type="text"
-            name="name"
+            name="text"
             onChange={handInput}
-            value={current.name}
+            value={current.text}
           />
         </td>
         <td>

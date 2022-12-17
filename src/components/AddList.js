@@ -1,22 +1,22 @@
 import { useRef } from "react";
 function AddList({ setTasks }) {
-    const nameRef = useRef();
+    const textRef = useRef();
     function handleSubmit(event) {
       event.preventDefault();
       const _id = Math.floor(Math.random() * 10000) + 1;
-      const name = event.target.elements.name.value;
+      const text = event.target.elements.text.value;
       const newlist = {
         _id: _id,
-        name,
+        text,
       };
       setTasks((prevList) => {
         return prevList.concat(newlist);
       });
-      nameRef.current.value = '';
+      textRef.current.value = '';
     }
     return (
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="enter name" ref={nameRef} />
+        <input type="text" name="text" placeholder="enter text" ref={textRef} />
         <button type="submit">Add</button>
       </form>
     );

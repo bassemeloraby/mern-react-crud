@@ -29,7 +29,7 @@ function Crud() {
             ) : (
               <tr className="text-center border">
                 <td className="border">{current._id}</td>
-                <td className="border">{current.name}</td>
+                <td className="border">{current.text}</td>
                 <td className="border">
                   <button
                     className="edit"
@@ -61,9 +61,9 @@ function Crud() {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    const name = event.target.elements.name.value;
+    const text = event.target.elements.text.value;
     const newlist = tasks.map((li) =>
-      li._id === updateState ? { ...li, name: name } : li
+      li._id === updateState ? { ...li, text: text } : li
     );
     setTasks(newlist);
     setUpdateState(-1);
