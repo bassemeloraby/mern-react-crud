@@ -1,12 +1,6 @@
 
 function EditList({ task, tasks, setTasks }) {
-    function handInput(event) {
-      const value = event.target.value;
-      const newlist = tasks.map((li) =>
-        li._id === task._id ? { ...li, text: value } : li
-      );
-      setTasks(newlist);
-    }
+    
     return (
       <tr>
         <td className="border">{task._id}</td>
@@ -23,6 +17,14 @@ function EditList({ task, tasks, setTasks }) {
         </td>
       </tr>
     );
+    //functions
+    function handInput(event) {
+      const value = event.target.value;
+      const newlist = tasks.map((li) =>
+        li._id === task._id ? { ...li, text: value } : li
+      );
+      setTasks(newlist);
+    }
   }
 
   export default EditList;

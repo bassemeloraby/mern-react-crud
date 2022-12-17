@@ -1,6 +1,13 @@
 import { useRef } from "react";
 function AddList({ setTasks }) {
     const textRef = useRef();
+    
+    return (
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="text" placeholder="enter text" ref={textRef} />
+        <button type="submit">Add</button>
+      </form>
+    );
     function handleSubmit(event) {
       event.preventDefault();
       const _id = Math.floor(Math.random() * 10000) + 1;
@@ -14,12 +21,6 @@ function AddList({ setTasks }) {
       });
       textRef.current.value = '';
     }
-    return (
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="text" placeholder="enter text" ref={textRef} />
-        <button type="submit">Add</button>
-      </form>
-    );
   }
 
   export default AddList
