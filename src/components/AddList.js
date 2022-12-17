@@ -3,10 +3,10 @@ function AddList({ setTasks }) {
     const nameRef = useRef();
     function handleSubmit(event) {
       event.preventDefault();
-      const id = Math.floor(Math.random() * 10000) + 1;
+      const _id = Math.floor(Math.random() * 10000) + 1;
       const name = event.target.elements.name.value;
       const newlist = {
-        id: id,
+        _id: _id,
         name,
       };
       setTasks((prevList) => {

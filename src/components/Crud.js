@@ -24,23 +24,23 @@ function Crud() {
       <form onSubmit={handleSubmit}>
         <table className="table  mt-4 border">
           {tasks.map((current) =>
-            updateState === current.id ? (
+            updateState === current._id ? (
               <EditList current={current} tasks={tasks} setTasks={setTasks} />
             ) : (
               <tr className="text-center border">
-                <td className="border">{current.id}</td>
+                <td className="border">{current._id}</td>
                 <td className="border">{current.name}</td>
                 <td className="border">
                   <button
                     className="edit"
-                    onClick={() => handleEdit(current.id)}
+                    onClick={() => handleEdit(current._id)}
                   >
                     Edit
                   </button>
                   <button
                     className="delete"
                     type="button"
-                    onClick={() => handleDelete(current.id)}
+                    onClick={() => handleDelete(current._id)}
                   >
                     Delete
                   </button>
@@ -52,18 +52,18 @@ function Crud() {
       </form>
     </div>
   );
-  function handleEdit(id) {
-    setUpdateState(id);
+  function handleEdit(_id) {
+    setUpdateState(_id);
   }
-  function handleDelete(id) {
-    const newList = tasks.filter((li) => li.id !== id);
+  function handleDelete(_id) {
+    const newList = tasks.filter((li) => li._id !== _id);
     setTasks(newList);
   }
   function handleSubmit(event) {
     event.preventDefault();
     const name = event.target.elements.name.value;
     const newlist = tasks.map((li) =>
-      li.id === updateState ? { ...li, name: name } : li
+      li._id === updateState ? { ...li, name: name } : li
     );
     setTasks(newlist);
     setUpdateState(-1);
