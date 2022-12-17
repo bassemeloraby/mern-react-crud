@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import AddList from './AddList';
+import AddTask from './AddTask';
 import EditList from './EditList';
 
 function Crud() {
+  //add useState for Task
   const [tasks, setTasks] = useState([
     {
       _id: 1,
@@ -17,11 +18,14 @@ function Crud() {
       text: 'soliman',
     },
   ]);
+  //add useState for Task updste
   const [updateState, setUpdateState] = useState(-1);
+
   return (
     <div className="container">
-      <AddList setTasks={setTasks} />
-      <form onSubmit={handleSubmit}>
+      <AddTask setTasks={setTasks} />
+
+      <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
           {tasks.map((task) =>
             updateState === task._id ? (
@@ -31,10 +35,7 @@ function Crud() {
                 <td className="border">{task._id}</td>
                 <td className="border">{task.text}</td>
                 <td className="border">
-                  <button
-                    className="edit"
-                    onClick={() => handleEdit(task._id)}
-                  >
+                  <button className="edit" onClick={() => handleEdit(task._id)}>
                     Edit
                   </button>
                   <button
@@ -59,7 +60,7 @@ function Crud() {
     const newList = tasks.filter((li) => li._id !== _id);
     setTasks(newList);
   }
-  function handleSubmit(event) {
+  function submitHandler(event) {
     event.preventDefault();
     const text = event.target.elements.text.value;
     const newlist = tasks.map((li) =>
