@@ -23,24 +23,24 @@ function Crud() {
       <AddList setTasks={setTasks} />
       <form onSubmit={handleSubmit}>
         <table className="table  mt-4 border">
-          {tasks.map((current) =>
-            updateState === current._id ? (
-              <EditList current={current} tasks={tasks} setTasks={setTasks} />
+          {tasks.map((task) =>
+            updateState === task._id ? (
+              <EditList task={task} tasks={tasks} setTasks={setTasks} />
             ) : (
               <tr className="text-center border">
-                <td className="border">{current._id}</td>
-                <td className="border">{current.text}</td>
+                <td className="border">{task._id}</td>
+                <td className="border">{task.text}</td>
                 <td className="border">
                   <button
                     className="edit"
-                    onClick={() => handleEdit(current._id)}
+                    onClick={() => handleEdit(task._id)}
                   >
                     Edit
                   </button>
                   <button
                     className="delete"
                     type="button"
-                    onClick={() => handleDelete(current._id)}
+                    onClick={() => handleDelete(task._id)}
                   >
                     Delete
                   </button>
