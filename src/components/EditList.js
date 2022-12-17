@@ -1,8 +1,8 @@
 
-function EditList({ current, lists, setList }) {
+function EditList({ current, tasks, setList }) {
     function handInput(event) {
       const value = event.target.value;
-      const newlist = lists.map((li) =>
+      const newlist = tasks.map((li) =>
         li.id === current.id ? { ...li, name: value } : li
       );
       setList(newlist);
