@@ -1,9 +1,10 @@
 import { useRef } from "react";
+
 function AddTask({ setTasks }) {
     const textRef = useRef();
     
     return (
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='mt-4'>
         <input type="text" name="text" placeholder="enter text" ref={textRef} />
         <button type="submit">Add</button>
       </form>

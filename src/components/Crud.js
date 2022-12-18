@@ -27,7 +27,7 @@ function Crud() {
 
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
-          {tasks.map((task) =>
+          {tasks.length > 0 ? (tasks.map((task) =>
             updateState === task._id ? (
               <EditList task={task} tasks={tasks} setTasks={setTasks} />
             ) : (
@@ -48,6 +48,10 @@ function Crud() {
                 </td>
               </tr>
             )
+          )):(
+            <tr>
+            <td className='text-center'>No tasks to show</td>
+            </tr>
           )}
         </table>
       </form>
