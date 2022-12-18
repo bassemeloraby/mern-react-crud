@@ -38,7 +38,7 @@ function Crud() {
                   <td className="border">
                     <button
                       className="edit"
-                      onClick={() => editHandle(task._id)}
+                      onClick={() => editHandler(task._id)}
                     >
                       Edit
                     </button>
@@ -47,7 +47,7 @@ function Crud() {
                     <button
                       className="delete"
                       type="button"
-                      onClick={() => handleDelete(task._id)}
+                      onClick={() => deleteHandler(task._id)}
                     >
                       Delete
                     </button>
@@ -64,16 +64,16 @@ function Crud() {
       </form>
     </div>
   );
-  function editHandle(_id) {
+  function editHandler(_id) {
     setUpdateState(_id);
   }
-  function handleDelete(_id) {
+  function deleteHandler(_id) {
     const newList = tasks.filter((li) => li._id !== _id);
     setTasks(newList);
   }
-  function submitHandler(event) {
-    event.preventDefault();
-    const text = event.target.elements.text.value;
+  function submitHandler(e) {
+    e.preventDefault();
+    const text = e.target.elements.text.value;
     const newlist = tasks.map((li) =>
       li._id === updateState ? { ...li, text: text } : li
     );
