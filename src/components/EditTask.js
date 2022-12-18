@@ -20,10 +20,10 @@ function EditTask({ task, tasks, setTasks }) {
     //functions
     function inputHandler(event) {
       const value = event.target.value;
-      const newlist = tasks.map((li) =>
+      const updatedTask = tasks.map((li) =>
         li._id === task._id ? { ...li, text: value } : li
       );
-      setTasks(newlist);
+      setTasks(updatedTask);
     }
   }
 
