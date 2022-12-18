@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AddTask from './AddTask';
-import EditList from './EditList';
+import EditTask from './EditTask';
 
 function Crud() {
   //add useState for Task
@@ -18,7 +18,7 @@ function Crud() {
       text: 'soliman',
     },
   ]);
-  //add useState for Task updste
+  //add useState for Task update
   const [updateState, setUpdateState] = useState(-1);
 
   return (
@@ -27,37 +27,44 @@ function Crud() {
 
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
-          {tasks.length > 0 ? (tasks.map((task) =>
-            updateState === task._id ? (
-              <EditList task={task} tasks={tasks} setTasks={setTasks} />
-            ) : (
-              <tr className="text-center border">
-                <td className="border">{task._id}</td>
-                <td className="border">{task.text}</td>
-                <td className="border">
-                  <button className="edit" onClick={() => handleEdit(task._id)}>
-                    Edit
-                  </button>
-                  <button
-                    className="delete"
-                    type="button"
-                    onClick={() => handleDelete(task._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+          {tasks.length > 0 ? (
+            tasks.map((task) =>
+              updateState === task._id ? (
+                <EditTask task={task} tasks={tasks} setTasks={setTasks} />
+              ) : (
+                <tr className="text-center border">
+                  <td className="border">{task._id}</td>
+                  <td className="border">{task.text}</td>
+                  <td className="border">
+                    <button
+                      className="edit"
+                      onClick={() => editHandle(task._id)}
+                    >
+                      Edit
+                    </button>
+                    </td>
+                    <td>
+                    <button
+                      className="delete"
+                      type="button"
+                      onClick={() => handleDelete(task._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              )
             )
-          )):(
+          ) : (
             <tr>
-            <td className='text-center'>No tasks to show</td>
+              <td className="text-center">No tasks to show</td>
             </tr>
           )}
         </table>
       </form>
     </div>
   );
-  function handleEdit(_id) {
+  function editHandle(_id) {
     setUpdateState(_id);
   }
   function handleDelete(_id) {

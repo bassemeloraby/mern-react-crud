@@ -1,5 +1,5 @@
 
-function EditList({ task, tasks, setTasks }) {
+function EditTask({ task, tasks, setTasks }) {
     
     return (
       <tr>
@@ -27,4 +27,4 @@ function EditList({ task, tasks, setTasks }) {
     }
   }
 
-  export default EditList;
+  export default EditTask;

@@ -71,4 +71,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ===================
 https://www.youtube.com/watch?v=QVokz2OrEy8&list=PLhDKyjgkNJZUrNyuR1qwOgLRNQFCclHT7&index=16
 00:23:40
-00:12:45
+00:17:11
+
+00:15:00 ==== editing
