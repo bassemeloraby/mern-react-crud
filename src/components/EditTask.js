@@ -8,7 +8,7 @@ function EditTask({ task, tasks, setTasks }) {
           <input
             type="text"
             name="text"
-            onChange={handInput}
+            onChange={inputHandler}
             value={task.text}
           />
         </td>
@@ -18,7 +18,7 @@ function EditTask({ task, tasks, setTasks }) {
       </tr>
     );
     //functions
-    function handInput(event) {
+    function inputHandler(event) {
       const value = event.target.value;
       const newlist = tasks.map((li) =>
         li._id === task._id ? { ...li, text: value } : li
