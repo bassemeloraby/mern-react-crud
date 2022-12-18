@@ -18,8 +18,8 @@ function EditTask({ task, tasks, setTasks }) {
       </tr>
     );
     //functions
-    function inputHandler(event) {
-      const value = event.target.value;
+    function inputHandler(e) {
+      const value = e.target.value;
       const updatedTask = tasks.map((li) =>
         li._id === task._id ? { ...li, text: value } : li
       );
