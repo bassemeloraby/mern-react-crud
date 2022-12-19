@@ -78,3 +78,4 @@ https://www.youtube.com/watch?v=QVokz2OrEy8&list=PLhDKyjgkNJZUrNyuR1qwOgLRNQFCcl
 *start to add search by filtering
 
 *building nav bar
+.build back end and sorting by update date and add date

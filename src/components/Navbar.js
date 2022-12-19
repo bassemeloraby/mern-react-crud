@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 
+
 const Navbar = () => {
   return (
-    <nav className="p-4">
-    <Link to='/' className="me-2">Home</Link>
+    <nav className="px-4 bg-danger">
+    <Link to='/' className="me-2 text-light">Home</Link>
     
     </nav>
   )
