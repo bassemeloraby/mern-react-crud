@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import AddTask from './AddTask';
 import EditTask from './EditTask';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import SearchTask from './SearchTask';
 
 function Crud() {
   //add useState for Task
@@ -27,15 +26,7 @@ function Crud() {
   return (
     <div className="container">
       <AddTask setTasks={setTasks} />
-      <Form>
-        <InputGroup className="my-3">
-          {/* onChange for search */}
-          <Form.Control
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search contacts"
-          />
-        </InputGroup>
-      </Form>
+      <SearchTask setSearch={setSearch}/>
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
           <thead>
