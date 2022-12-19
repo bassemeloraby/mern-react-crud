@@ -1,9 +1,9 @@
+import Button from 'react-bootstrap/Button';
 
 function EditTask({ task, tasks, setTasks }) {
-    
-    return (
-      <tbody>
-      <tr >
+  return (
+    <tbody>
+      <tr>
         <td className="border">{task._id}</td>
         <td>
           <input
@@ -14,19 +14,21 @@ function EditTask({ task, tasks, setTasks }) {
           />
         </td>
         <td>
-          <button type="submit">Update</button>
+          <Button variant="success" type="submit">
+            Update
+          </Button>
         </td>
       </tr>
-      </tbody>
+    </tbody>
+  );
+  //functions
+  function inputHandler(e) {
+    const value = e.target.value;
+    const updatedTask = tasks.map((li) =>
+      li._id === task._id ? { ...li, text: value } : li
     );
-    //functions
-    function inputHandler(e) {
-      const value = e.target.value;
-      const updatedTask = tasks.map((li) =>
-        li._id === task._id ? { ...li, text: value } : li
-      );
-      setTasks(updatedTask);
-    }
+    setTasks(updatedTask);
   }
+}
 
-  export default EditTask;
+export default EditTask;

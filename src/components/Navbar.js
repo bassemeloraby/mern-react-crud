@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
   return (
-    <nav className="">
+    <nav className="p-4">
     <Link to='/' className="me-2">Home</Link>
-    <Link to='/about'>About</Link>
+    
     </nav>
   )
 }
