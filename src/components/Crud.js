@@ -27,11 +27,19 @@ function Crud() {
 
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
+        <thead>
+          <tr className="text-center border bg-primary">
+            <th className="border">Id</th>
+            <th className="border">Task</th>
+            <th className="border">Operations</th>
+          </tr>
+          </thead>
           {tasks.length > 0 ? (
             tasks.map((task) =>
               updateState === task._id ? (
                 <EditTask task={task} tasks={tasks} setTasks={setTasks} />
               ) : (
+                <tbody>
                 <tr className="text-center border">
                   <td className="border">{task._id}</td>
                   <td className="border">{task.text}</td>
@@ -42,8 +50,6 @@ function Crud() {
                     >
                       Edit
                     </button>
-                    </td>
-                    <td>
                     <button
                       className="delete"
                       type="button"
@@ -53,6 +59,7 @@ function Crud() {
                     </button>
                   </td>
                 </tr>
+                </tbody>
               )
             )
           ) : (
