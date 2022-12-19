@@ -23,57 +23,62 @@ function Crud() {
   //add useState for Task update
   const [updateState, setUpdateState] = useState(-1);
   const [search, setSearch] = useState('');
-
+  
   return (
     <div className="container">
       <AddTask setTasks={setTasks} />
       <Form>
-          <InputGroup className='my-3'>
-
-            {/* onChange for search */}
-            <Form.Control
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder='Search contacts'
-            />
-          </InputGroup>
-        </Form>
+        <InputGroup className="my-3">
+          {/* onChange for search */}
+          <Form.Control
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search contacts"
+          />
+        </InputGroup>
+      </Form>
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
-        <thead>
-          <tr className="text-center border bg-primary">
-            <th className="border">Id</th>
-            <th className="border">Task</th>
-            <th className="border">Operations</th>
-          </tr>
+          <thead>
+            <tr className="text-center border bg-primary">
+              <th className="border">Id</th>
+              <th className="border">Task</th>
+              <th className="border">Operations</th>
+            </tr>
           </thead>
           {tasks.length > 0 ? (
-            tasks.map((task) =>
-              updateState === task._id ? (
-                <EditTask task={task} tasks={tasks} setTasks={setTasks} />
-              ) : (
-                <tbody>
-                <tr className="text-center border">
-                  <td className="border">{task._id}</td>
-                  <td className="border">{task.text}</td>
-                  <td className="border">
-                    <button
-                      className="edit"
-                      onClick={() => editHandler(task._id)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="delete"
-                      type="button"
-                      onClick={() => deleteHandler(task._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
+            tasks
+              .filter((task) => {
+                return search.toLowerCase() === ''
+                  ? task
+                  : task.text.toLowerCase().includes(search);
+              })
+              .map((task) =>
+                updateState === task._id ? (
+                  <EditTask key={task._id} task={task} tasks={tasks} setTasks={setTasks} />
+                ) : (
+                  <tbody key={task._id}>
+                    <tr className="text-center border">
+                      <td className="border">{task._id}</td>
+                      <td className="border">{task.text}</td>
+                      <td className="border">
+                        <button
+                          className="edit"
+                          onClick={() => editHandler(task._id)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="delete"
+                          type="button"
+                          onClick={() => deleteHandler(task._id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                )
               )
-            )
           ) : (
             <tr>
               <td className="text-center">No tasks to show</td>

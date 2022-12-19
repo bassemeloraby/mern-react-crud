@@ -2,7 +2,8 @@
 function EditTask({ task, tasks, setTasks }) {
     
     return (
-      <tr>
+      <tbody>
+      <tr >
         <td className="border">{task._id}</td>
         <td>
           <input
@@ -16,6 +17,7 @@ function EditTask({ task, tasks, setTasks }) {
           <button type="submit">Update</button>
         </td>
       </tr>
+      </tbody>
     );
     //functions
     function inputHandler(e) {
