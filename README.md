@@ -76,3 +76,5 @@ https://www.youtube.com/watch?v=QVokz2OrEy8&list=PLhDKyjgkNJZUrNyuR1qwOgLRNQFCcl
 00:15:00 ==== editing
 
 *start to add search by filtering
+
+*building nav bar

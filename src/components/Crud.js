@@ -1,8 +1,10 @@
 import { useState } from 'react';
+
 import AddTask from './AddTask';
 import EditTask from './EditTask';
-import SearchTask from './SearchTask';
 
+import SearchTask from './SearchTask';
+import Button from 'react-bootstrap/Button';
 function Crud() {
   //add useState for Task
   const [tasks, setTasks] = useState([
@@ -25,6 +27,7 @@ function Crud() {
   
   return (
     <div className="container">
+    
       <AddTask setTasks={setTasks} />
       <SearchTask setSearch={setSearch}/>
       <form onSubmit={submitHandler}>
@@ -52,19 +55,20 @@ function Crud() {
                       <td className="border">{task._id}</td>
                       <td className="border">{task.text}</td>
                       <td className="border">
-                        <button
+                        <Button
                           className="edit"
                           onClick={() => editHandler(task._id)}
                         >
                           Edit
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                        variant="danger"
                           className="delete"
                           type="button"
                           onClick={() => deleteHandler(task._id)}
                         >
                           Delete
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   </tbody>
