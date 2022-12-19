@@ -23,7 +23,7 @@ function Crud() {
   //add useState for Task update
   const [updateState, setUpdateState] = useState(-1);
   const [search, setSearch] = useState('');
-  
+
   return (
     <div className="container">
       <AddTask setTasks={setTasks} />
