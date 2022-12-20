@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import AddTask from './AddTask';
 import EditTask from './EditTask';
 
@@ -7,36 +7,31 @@ import SearchTask from './SearchTask';
 import Button from 'react-bootstrap/Button';
 
 function Crud() {
+  useEffect(() => {
+    axios.get(`http://localhost:5000/tasks`).then((res) => {
+      console.log(res.data);
+      setTasks(res.data);
+    });
+  }, []);
+
+  //fetch of data with axios
   //add useState for Task
-  const [tasks, setTasks] = useState([
-    {
-      _id: 1,
-      text: 'bassem',
-    },
-    {
-      _id: 2,
-      text: 'omar',
-    },
-    {
-      _id: 3,
-      text: 'soliman',
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
   //add useState for Task update
   const [updateState, setUpdateState] = useState(-1);
   const [search, setSearch] = useState('');
-  
+
   return (
     <div className="container">
-    
       <AddTask setTasks={setTasks} />
-      <SearchTask setSearch={setSearch}/>
+      <SearchTask setSearch={setSearch} />
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
           <thead>
             <tr className="text-center border bg-primary">
-              <th className="border">Id</th>
+              
               <th className="border">Task</th>
+              <th className="border">time added</th>
               <th className="border">Operations</th>
             </tr>
           </thead>
@@ -49,12 +44,18 @@ function Crud() {
               })
               .map((task) =>
                 updateState === task._id ? (
-                  <EditTask key={task._id} task={task} tasks={tasks} setTasks={setTasks} />
+                  <EditTask
+                    key={task._id}
+                    task={task}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                  />
                 ) : (
                   <tbody key={task._id}>
                     <tr className="text-center border">
-                      <td className="border">{task._id}</td>
+                      
                       <td className="border">{task.text}</td>
+                      <td className="border">{task.createdAt}</td>
                       <td className="border">
                         <Button
                           className="edit"
@@ -63,7 +64,7 @@ function Crud() {
                           Edit
                         </Button>
                         <Button
-                        variant="danger"
+                          variant="danger"
                           className="delete"
                           type="button"
                           onClick={() => deleteHandler(task._id)}
