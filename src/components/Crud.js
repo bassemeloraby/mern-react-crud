@@ -7,6 +7,7 @@ import SearchTask from './SearchTask';
 import Button from 'react-bootstrap/Button';
 
 function Crud() {
+  //fetch of data with axios
   useEffect(() => {
     axios.get(`http://localhost:5000/tasks`).then((res) => {
       console.log(res.data);
@@ -14,7 +15,7 @@ function Crud() {
     });
   }, []);
 
-  //fetch of data with axios
+  
   //add useState for Task
   const [tasks, setTasks] = useState([]);
   //add useState for Task update
@@ -89,6 +90,7 @@ function Crud() {
     setUpdateState(_id);
   }
   function deleteHandler(_id) {
+     axios.delete(`http://localhost:5000/tasks/${_id}`)
     const newList = tasks.filter((li) => li._id !== _id);
     setTasks(newList);
   }
