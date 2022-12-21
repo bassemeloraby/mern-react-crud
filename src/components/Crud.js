@@ -21,10 +21,28 @@ function Crud() {
   //add useState for Task update
   const [updateState, setUpdateState] = useState(-1);
   const [search, setSearch] = useState('');
+  // Add Task
+  const addTask = async (task) => {
+    const res = await fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(task),
+    })
+
+    const data = await res.json()
+
+    setTasks([...tasks, data])
+
+    // const id = Math.floor(Math.random() * 10000) + 1
+    // const newTask = { id, ...task }
+    // setTasks([...tasks, newTask])
+  }
 
   return (
     <div className="container">
-      <AddTask setTasks={setTasks} />
+      <AddTask onAdd={addTask} />
       <SearchTask setSearch={setSearch} />
       <form onSubmit={submitHandler}>
         <table className="table  mt-4 border">
