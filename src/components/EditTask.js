@@ -1,10 +1,10 @@
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 
 function EditTask({ task, tasks, setTasks }) {
   return (
     <tbody>
       <tr>
-        <td className="border">{task._id}</td>
         <td>
           <input
             type="text"
@@ -13,6 +13,7 @@ function EditTask({ task, tasks, setTasks }) {
             value={task.text}
           />
         </td>
+        <td className="border">{task.createdAt}</td>
         <td>
           <Button variant="success" type="submit">
             Update
@@ -24,6 +25,8 @@ function EditTask({ task, tasks, setTasks }) {
   //functions
   function inputHandler(e) {
     const value = e.target.value;
+    const _id = task._id;
+    axios.put(`http://localhost:5000/tasks/${_id}`, { text: value });
     const updatedTask = tasks.map((li) =>
       li._id === task._id ? { ...li, text: value } : li
     );

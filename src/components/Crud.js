@@ -15,7 +15,6 @@ function Crud() {
     });
   }, []);
 
-  
   //add useState for Task
   const [tasks, setTasks] = useState([]);
   //add useState for Task update
@@ -29,16 +28,16 @@ function Crud() {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(task),
-    })
+    });
 
-    const data = await res.json()
+    const data = await res.json();
 
-    setTasks([...tasks, data])
+    setTasks([...tasks, data]);
 
     // const id = Math.floor(Math.random() * 10000) + 1
     // const newTask = { id, ...task }
     // setTasks([...tasks, newTask])
-  }
+  };
 
   return (
     <div className="container">
@@ -48,7 +47,6 @@ function Crud() {
         <table className="table  mt-4 border">
           <thead>
             <tr className="text-center border bg-primary">
-              
               <th className="border">Task</th>
               <th className="border">time added</th>
               <th className="border">Operations</th>
@@ -68,11 +66,11 @@ function Crud() {
                     task={task}
                     tasks={tasks}
                     setTasks={setTasks}
+                    updateBack={task._id}
                   />
                 ) : (
                   <tbody key={task._id}>
                     <tr className="text-center border">
-                      
                       <td className="border">{task.text}</td>
                       <td className="border">{task.createdAt}</td>
                       <td className="border">
@@ -106,9 +104,10 @@ function Crud() {
   );
   function editHandler(_id) {
     setUpdateState(_id);
+    console.log(_id)
   }
   function deleteHandler(_id) {
-     axios.delete(`http://localhost:5000/tasks/${_id}`)
+    axios.delete(`http://localhost:5000/tasks/${_id}`);
     const newList = tasks.filter((li) => li._id !== _id);
     setTasks(newList);
   }
@@ -121,6 +120,7 @@ function Crud() {
     setTasks(newlist);
     setUpdateState(-1);
   }
+  
 }
 
 export default Crud;
